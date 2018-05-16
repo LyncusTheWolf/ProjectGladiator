@@ -35,6 +35,8 @@ namespace Gladiatorz {
         private float currentZoom;
         private Transform followTarget;
 
+        private Vector3 smoothVel;
+
         void Awake() {
             ResetCamera(motor, true);
         }
@@ -98,6 +100,7 @@ namespace Gladiatorz {
                 transform.position = hit.point + hit.normal * normalOffset;
             } else {
                 transform.position = Vector3.Slerp(transform.position, targetPos, Time.deltaTime * easing);
+                //transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref smoothVel, Time.deltaTime * easing);
             }
 
         }
