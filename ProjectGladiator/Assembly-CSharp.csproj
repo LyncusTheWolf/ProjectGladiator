@@ -61,9 +61,20 @@
   <ItemGroup>
     <Compile Include="Assets\Audio\AudioPH.cs" />
     <Compile Include="Assets\Cinematics\CinematicPH.cs" />
+    <Compile Include="Assets\Scripts\BreakableObject.cs" />
     <Compile Include="Assets\Scripts\CameraRig.cs" />
-    <Compile Include="Assets\Scripts\CharacterMotor.cs" />
+    <Compile Include="Assets\Scripts\Character\Character.cs" />
+    <Compile Include="Assets\Scripts\Character\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Character\Player.cs" />
+    <Compile Include="Assets\Scripts\ControllerStates\CharacterAnimator.cs" />
+    <Compile Include="Assets\Scripts\ControllerStates\CharacterMotor.cs" />
+    <Compile Include="Assets\Scripts\ControllerStates\Firing.cs" />
     <Compile Include="Assets\Scripts\ControllerStates\Locomotion.cs" />
+    <Compile Include="Assets\Scripts\DamagableObject.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Networking\NetworkPrefab.cs" />
+    <Compile Include="Assets\Scripts\Traits\Trait.cs" />
+    <Compile Include="Assets\Scripts\Traits\TraitDatabase.cs" />
     <Reference Include="Unity.ProBuilder.AddOns.Editor">
       <HintPath>F:/Users/kenne_000/GitRepositories/ProjectGladiator/ProjectGladiator/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Gladiatorz {
     public class CameraRig : MonoBehaviour {
 
-        public const float DEAD_ZONE = 0.05f;
+        public const float DEAD_ZONE = 0.005f;
 
         public CharacterMotor motor;
 
@@ -13,11 +13,14 @@ namespace Gladiatorz {
         public float zoomMinClamp = 5.0f;
         public float zoomMaxClamp = 20.0f;
 
+        public Vector3 lookOffset;
+
         public float easing = 5.0f;
         public float yawEasing = 5.0f;
 
         public float yawControlSpeed = 3.0f;
         public float pitchControlSpeed = 3.0f;
+        public float mouseSensitivity = 30.0f;
 
         [Range(0.0f, 1.0f)]
         public float rotBias = 1.0f;
@@ -26,9 +29,13 @@ namespace Gladiatorz {
         public float pitchMinClamp = -15.0f;
         public float pitchMaxClamp = 60.0f;
 
+        public bool resetOnNoMotion;
+
         [Header("Occlusion Controls")]
         public LayerMask occlusionMask;
         public float normalOffset;
+
+        private static CameraRig instance;
 
         private float currentYaw;
         private float currentPitch;
@@ -36,9 +43,27 @@ namespace Gladiatorz {
         private Transform followTarget;
 
         private Vector3 smoothVel;
+        private Vector3 currentMousePos;
+
+        public static CameraRig Instance {
+            get { return instance; }
+        }
+
+        public Vector3 FlatSpaceDirection() {
+            Vector3 outDir = transform.forward;
+            outDir.y = 0.0f;
+            return outDir.normalized;
+        }
 
         void Awake() {
-            ResetCamera(motor, true);
+            if(instance != null) {
+                Destroy(gameObject);
+                return;
+            }
+
+            instance = this;
+
+            //ResetCamera(motor, true);
         }
 
         public void Update() {
@@ -55,37 +80,49 @@ namespace Gladiatorz {
         }
 
         private void CameraControl(float timeDelta) {
-            float cameraHorizontal = -Input.GetAxis("RightHorizontal");
-            float cameraVertical = -Input.GetAxis("RightVertical");
-            float dHorizontal = Input.GetAxis("D Horizontal");
-            float dVertical = Input.GetAxis("D Vertical");
+            float cameraHorizontal = 0.0f;
+            float cameraVertical = 0.0f;
+            //float dHorizontal = Input.GetAxis("D Horizontal");
+            float zoomDelta = 0.0f;
 
-            currentZoom = Mathf.Clamp(currentZoom + (dVertical * timeDelta * 3.0f), zoomMinClamp, zoomMaxClamp);
+            GetCameraMovement(ref cameraHorizontal, ref cameraVertical, ref zoomDelta);
 
-            if (Mathf.Abs(cameraHorizontal) > DEAD_ZONE) {
-                currentYaw = Mathf.LerpAngle(currentYaw, currentYaw + cameraHorizontal * yawControlSpeed, timeDelta);
-            } else {
-                Vector3 viewTemp = transform.forward;
-                viewTemp.y = 0;
+            currentZoom = Mathf.Clamp(currentZoom + (zoomDelta * timeDelta * 3.0f), zoomMinClamp, zoomMaxClamp);
 
-                float val = Vector3.Dot(motor.CurrentFrameInput.worldMotionDirection, viewTemp);
-                float factor = ((val + 1) * 0.5f * rotBias) + (1 - rotBias);
+            //currentYaw = Mathf.LerpAngle(currentYaw, currentYaw + cameraHorizontal * yawControlSpeed, timeDelta);
 
-                //currentYaw = Mathf.LerpAngle(currentYaw, followTarget.rotation.eulerAngles.y, yawEasing * timeDelta /* * motor.CurrentFrameInput.currentMoveMagnitude*/ * factor);
-            }
+            currentYaw = (currentYaw + cameraHorizontal * yawControlSpeed * timeDelta) % 360.0f;
 
-            if (Mathf.Abs(cameraVertical) > DEAD_ZONE) {
-                currentPitch = Mathf.LerpAngle(currentPitch, currentPitch + cameraVertical * pitchControlSpeed, timeDelta);
-            } else {
-                currentPitch = Mathf.LerpAngle(currentPitch, startingPitch, yawEasing * timeDelta /** motor.CurrentFrameInput.currentMoveMagnitude */);
-            }
+            //currentPitch = Mathf.LerpAngle(currentPitch, currentPitch + cameraVertical * pitchControlSpeed, timeDelta);
 
-            currentPitch = Mathf.Clamp(currentPitch, pitchMinClamp, pitchMaxClamp);
+            currentPitch = Mathf.Clamp(currentPitch + cameraVertical * pitchControlSpeed * timeDelta, pitchMinClamp, pitchMaxClamp);
 
-            Vector3 targetPosition = followTarget.position - (Quaternion.Euler(currentPitch, currentYaw, 0.0f) * Vector3.forward) * currentZoom;
+            Vector3 targetDir = -(Quaternion.Euler(currentPitch, currentYaw, 0.0f) * Vector3.forward) * currentZoom;
+            Vector3 targetPosition = followTarget.position + targetDir;
+
+            targetDir.Normalize();
+            Vector3 lookDir = -targetDir;
+                        
+            targetDir.y = 0.0f;
+            targetPosition += Quaternion.LookRotation(targetDir) * lookOffset;
 
             PushPosition(targetPosition, timeDelta);
-            transform.LookAt(followTarget);
+            transform.rotation = Quaternion.LookRotation(lookDir);
+        }
+
+        private void GetCameraMovement(ref float cameraHorizontal, ref float cameraVertical, ref float zoomDelta) {
+            Vector3 newMousePos = Input.mousePosition;
+
+            cameraHorizontal += (newMousePos.x - currentMousePos.x);
+            cameraVertical += -(newMousePos.y - currentMousePos.y);
+
+            currentMousePos = newMousePos;
+
+            cameraHorizontal += -Input.GetAxis("RightHorizontal");
+            cameraVertical += -Input.GetAxis("RightVertical");
+
+            zoomDelta += Input.mouseScrollDelta.y;
+            zoomDelta += Input.GetAxis("D Vertical");
         }
 
         public void PushPosition(Vector3 targetPos, float timeDelta) {
@@ -99,8 +136,7 @@ namespace Gladiatorz {
             if (Physics.Raycast(hitRay, out hit, currentZoom, occlusionMask, QueryTriggerInteraction.Ignore)) {
                 transform.position = hit.point + hit.normal * normalOffset;
             } else {
-                transform.position = Vector3.Slerp(transform.position, targetPos, Time.deltaTime * easing);
-                //transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref smoothVel, Time.deltaTime * easing);
+                transform.position = targetPos;
             }
 
         }
@@ -114,6 +150,8 @@ namespace Gladiatorz {
             currentYaw = followTarget.transform.rotation.eulerAngles.y;
             currentPitch = startingPitch;
             currentZoom = startingZoom;
+
+            currentMousePos = Input.mousePosition;
 
             if (snapToPosition) {
                 transform.position = followTarget.position - (Quaternion.Euler(currentPitch, currentYaw, 0.0f) * Vector3.forward) * startingZoom;

@@ -34,6 +34,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+[Bb]uilds
 
 #Maya files
 *.mb
