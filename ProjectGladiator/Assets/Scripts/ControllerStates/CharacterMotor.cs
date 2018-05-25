@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Gladiatorz {
     public struct CharacterInput {
@@ -19,16 +20,9 @@ namespace Gladiatorz {
         public float turnSpeed;
     }
 
-    public abstract class ControllerState {
-        public CharacterMotor parentMotor;
-
-        public virtual void OnStateEnter() { }
-        public virtual void OnStateExit() { }
-        public abstract void OnStateUpdate(CharacterInput input);
-    }
-
     [RequireComponent(typeof(Rigidbody))]
-    public class CharacterMotor : MonoBehaviour {
+    [RequireComponent(typeof(Character))]
+    public class CharacterMotor : NetworkBehaviour {
 
         public const float INPUT_DEADZONE = 0.05f;
 
@@ -38,13 +32,22 @@ namespace Gladiatorz {
 
         private CharacterInput frameInput;
         private ControllerState currentCharacterState;
+        private Character characterStats;
         private new Rigidbody rigidbody;
+
+        [SyncVar]
+        private float motorMoveMagnitude;
 
         private Vector3 utilityVector;
 
         #region Accesors
         public Rigidbody CharacaterRigidbody {
             get { return rigidbody; }
+        }
+
+        public float MoveMagnitude {
+            get { return motorMoveMagnitude; }
+            set { motorMoveMagnitude = value; }
         }
 
         public CharacterInput CurrentFrameInput {
@@ -58,19 +61,34 @@ namespace Gladiatorz {
 
         // Use this for initialization
         void Start() {
-            BuildControllerStates();
+            GetInitialControlState();
         }
 
         // Update is called once per frame
         void Update() {
+            if (!isLocalPlayer) {
+                return;
+            }
+
             ClearFrameInput();
             ProcessFrameInput();
-            currentCharacterState.OnStateUpdate(frameInput);
+            currentCharacterState.OnStateUpdate(this, frameInput, characterStats);
         }
 
-        public void BuildControllerStates() {
-            currentCharacterState = new LocomotionState();
-            currentCharacterState.parentMotor = this;
+        public void BindCharacterStats(Character charStats) {
+            characterStats = charStats;
+        }
+
+        public void GetInitialControlState() {
+            GameManager.Instance.PushMotorState(this, ControllerStateID.Locomotion);
+        }
+
+        public void BindState(ControllerState state) {
+            if(currentCharacterState != null) {
+                currentCharacterState.OnStateExit(this);
+            }
+            currentCharacterState = state;
+            state.OnStateEnter(this);
         }
 
         public void ClearFrameInput() {

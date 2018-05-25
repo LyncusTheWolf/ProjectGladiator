@@ -207,8 +207,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
-  attack: 0
-  defense: 0
+  quickFireMask:
+    serializedVersion: 2
+    m_Bits: 1025
+  weaponHitParticle: {fileID: 0}
+  weaponDelay: 0.5
+  baseAttack: 5
+  baseDefense: 0
 --- !u!114 &114243513239508550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,8 +296,8 @@ MonoBehaviour:
   stats:
     moveSpeed: 6
     moveSpeedAcceleration: 8
-    strafeSpeed: 4
-    turnSpeed: 3.8
+    strafeSpeed: 3.5
+    turnSpeed: 8
 --- !u!114 &114898929481272514
 MonoBehaviour:
   m_ObjectHideFlags: 1

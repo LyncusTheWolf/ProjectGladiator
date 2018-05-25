@@ -51,9 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a31a0a291087b74abc1cbcc84fd4902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultHitParticle: {fileID: 1601562069105070, guid: d423bd7e5b82c904491c1671fc5d9cf0,
+    type: 2}
+  sceneCamera: {fileID: 0}
   playerCameraPrefab: {fileID: 1842425073863376, guid: 70d1f85240bef50478858d838ed1820b,
     type: 2}
-  quickFireMask:
-    serializedVersion: 2
-    m_Bits: 0
-  firingMaxDistance: 20

@@ -4,16 +4,20 @@ using UnityEngine;
 
 namespace Gladiatorz {
     public class LocomotionState : ControllerState {
-        public float currentMoveMagnitude;
+        //public float currentMoveMagnitude;
 
-        public override void OnStateEnter() {
-            currentMoveMagnitude = 0.0f;
+        public override ControllerStateID GetControllerStateID() {
+            return ControllerStateID.Locomotion;
         }
 
-        public override void OnStateUpdate(CharacterInput input) {
-            Transform root = parentMotor.transform;
+        public override void OnStateEnter(CharacterMotor motor) {
 
-            Debug.DrawRay(parentMotor.transform.position + Vector3.up, input.worldMotionDirection * 5.0f);
+        }
+
+        public override void OnStateUpdate(CharacterMotor motor, CharacterInput input, Character characterBase) {
+            Transform root = motor.transform;
+
+            Debug.DrawRay(motor.transform.position + Vector3.up, input.worldMotionDirection * 5.0f);
 
             float inputMoveMagnitude = input.worldMotionDirection.magnitude;
             Vector3 targetDir = input.worldMotionDirection;
@@ -23,14 +27,18 @@ namespace Gladiatorz {
                 targetDir = root.forward;
             }
 
-            currentMoveMagnitude = Mathf.Lerp(currentMoveMagnitude, input.worldMotionDirection.magnitude, Time.deltaTime * parentMotor.stats.moveSpeedAcceleration);
-            root.rotation = Quaternion.Lerp(root.rotation, Quaternion.LookRotation(targetDir), Time.deltaTime * parentMotor.stats.turnSpeed * currentMoveMagnitude);
+            motor.MoveMagnitude = Mathf.Lerp(motor.MoveMagnitude, input.worldMotionDirection.magnitude, Time.deltaTime * motor.stats.moveSpeedAcceleration);
+            root.rotation = Quaternion.Lerp(root.rotation, Quaternion.LookRotation(targetDir), Time.deltaTime * motor.stats.turnSpeed * motor.MoveMagnitude);
 
-            float oldY = parentMotor.CharacaterRigidbody.velocity.y;
-            Vector3 newVelocity = root.forward * currentMoveMagnitude * parentMotor.stats.moveSpeed;
+            float oldY = motor.CharacaterRigidbody.velocity.y;
+            Vector3 newVelocity = root.forward * motor.MoveMagnitude * motor.stats.moveSpeed;
             newVelocity.y = oldY;
 
-            parentMotor.CharacaterRigidbody.velocity = newVelocity;
+            motor.CharacaterRigidbody.velocity = newVelocity;
+
+            if (input.firing) {
+                GameManager.Instance.PushMotorState(motor, ControllerStateID.Firing);
+            }
         }
     }
 }

@@ -6,26 +6,55 @@ using UnityEngine.Networking;
 namespace Gladiatorz {
     public abstract class DamagableObject : NetworkBehaviour {
 
-        public delegate void OnDeathDelegate();
-        public event OnDeathDelegate onDeathEvent;
+        public delegate void OnModifyDelegate(DamagableObject self);
+        public event OnModifyDelegate onDeathEvent;
+        public event OnModifyDelegate onDamageEvent;
 
+        [SyncVar]
         public int currentHealth;
+        [SyncVar]
         public int maxHealth;
 
+        [SyncVar]
+        protected uint totalDefense;
+
+        public int Defense {
+            get { return (int)totalDefense; }
+        }
+
         public void Start() {
-            if (isLocalPlayer) {
-                currentHealth = maxHealth;
-                Init();
+            currentHealth = maxHealth;                
+
+            Init();
+        }
+
+        public float PollHealthRatio() {
+            return currentHealth / (float)maxHealth;
+        }
+
+        [Command]
+        public void CmdAdjustHealth(int amt) {
+            Debug.Log("Pushing Damage");
+
+            currentHealth = Mathf.Clamp(currentHealth + amt, 0, maxHealth);
+
+            RpcAdjustCallback();
+
+            if (currentHealth == 0) {
+                OnDeath();
             }
         }
 
-        public void AdjustHealth(int amt) {
-            currentHealth = Mathf.Clamp(currentHealth + amt, 0, maxHealth);
+        [ClientRpc]
+        public void RpcAdjustCallback() {
+            if (isLocalPlayer) {
+                onDamageEvent(this);
+            }
         }
 
         public void Kill() {
             OnDeath();
-            onDeathEvent();
+            onDeathEvent(this);
         }
 
         public abstract void Init();

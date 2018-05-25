@@ -69,8 +69,8 @@ namespace Gladiatorz {
         public void Update() {
             CameraControl(Time.deltaTime);
 
-            if (Input.GetButtonDown("R3")) {
-                ResetCamera(motor, true);
+            if (Input.GetButtonDown("Reset View")) {
+                ResetCamera(motor);
             }
         }
 
@@ -138,10 +138,9 @@ namespace Gladiatorz {
             } else {
                 transform.position = targetPos;
             }
-
         }
 
-        public void ResetCamera(CharacterMotor newMotor, bool snapToPosition) {
+        public void ResetCamera(CharacterMotor newMotor) {
             if (newMotor != null) {
                 motor = newMotor;
                 followTarget = motor.focalPoint;
@@ -152,11 +151,6 @@ namespace Gladiatorz {
             currentZoom = startingZoom;
 
             currentMousePos = Input.mousePosition;
-
-            if (snapToPosition) {
-                transform.position = followTarget.position - (Quaternion.Euler(currentPitch, currentYaw, 0.0f) * Vector3.forward) * startingZoom;
-                transform.LookAt(followTarget);
-            }
         }
     }
 }
