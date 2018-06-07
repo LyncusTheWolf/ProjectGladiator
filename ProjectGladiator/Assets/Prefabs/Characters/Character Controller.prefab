@@ -11,6 +11,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1645866943679334}
   m_IsPrefabParent: 1
+--- !u!1 &1247928270030898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4729176480720088}
+  - component: {fileID: 33878463769838178}
+  - component: {fileID: 23667409554253526}
+  m_Layer: 0
+  m_Name: main_character
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1645866943679334
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,24 +65,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1820682539609772
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4543929629784804}
-  - component: {fileID: 33978571621732620}
-  - component: {fileID: 23749836924240090}
-  - component: {fileID: 114898929481272514}
-  m_Layer: 0
-  m_Name: WIPLOWPOLY
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1905519516828186
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,20 +92,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4799213545289090}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4543929629784804
+--- !u!4 &4729176480720088
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1820682539609772}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.929, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1247928270030898}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4799213545289090}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4799213545289090
 Transform:
@@ -119,8 +118,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4860833740904386}
-  - {fileID: 4543929629784804}
   - {fileID: 4320389618348912}
+  - {fileID: 4729176480720088}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -137,12 +136,12 @@ Transform:
   m_Father: {fileID: 4799213545289090}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23749836924240090
+--- !u!23 &23667409554253526
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1820682539609772}
+  m_GameObject: {fileID: 1247928270030898}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -152,7 +151,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 838c75602c5cb7f459dde46ca77ddd7d, type: 3}
+  - {fileID: 2100000, guid: 0cdf6c571e8796744a481b9ed1ed2a1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -172,13 +171,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33978571621732620
+--- !u!33 &33878463769838178
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1820682539609772}
-  m_Mesh: {fileID: 4300000, guid: 838c75602c5cb7f459dde46ca77ddd7d, type: 3}
+  m_GameObject: {fileID: 1247928270030898}
+  m_Mesh: {fileID: 4300000, guid: 82f6327df14749c4992e44d99328b34b, type: 3}
 --- !u!54 &54526157431773726
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -291,24 +290,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ce2074973877b42b8c468491d55f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterAnimator: {fileID: 114898929481272514}
+  characterAnimator: {fileID: 0}
   focalPoint: {fileID: 4860833740904386}
   stats:
     moveSpeed: 6
     moveSpeedAcceleration: 8
     strafeSpeed: 3.5
     turnSpeed: 8
---- !u!114 &114898929481272514
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1820682539609772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde1cdb784afa0c4d97f23a8e71c2cdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135019593670386386
 SphereCollider:
   m_ObjectHideFlags: 1
