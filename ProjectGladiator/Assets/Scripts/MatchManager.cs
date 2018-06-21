@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+//TODO: Remove temporary serialization
+[System.Serializable]
+public struct MatchStatistics {
+    public int kills;
+    public int deaths;
+}
+
 namespace Gladiatorz {
     public class MatchManager : NetworkBehaviour {
         private static MatchManager instance;
 
         public float firingMaxDistance;
         public LayerMask ignoreLayer;
+
+        public Dictionary<Player, MatchStatistics> playersInScene;
 
         public static MatchManager Instance {
             get { return instance; }
@@ -25,7 +34,28 @@ namespace Gladiatorz {
         }
 
         public void Init() {
+            playersInScene = new Dictionary<Player, MatchStatistics>();
+        }
 
+        [Server]
+        public void RegisterPlayer(Player newPlayer) {
+            if (playersInScene.ContainsKey(newPlayer)) {
+                //TODO: Set up some form of server side error checking
+                return;
+            }
+
+            playersInScene.Add(newPlayer, new MatchStatistics());
+        }
+
+        [Server]
+        public string PullServerMatchData() {
+            string matchString = "";
+
+            foreach(KeyValuePair<Player, MatchStatistics> pms in playersInScene) {
+                matchString += pms.Key.name + ": Kills-" + pms.Value.kills + " Deaths-" + pms.Value.deaths + " \n";
+            }
+
+            return matchString;
         }
 
         [Server]

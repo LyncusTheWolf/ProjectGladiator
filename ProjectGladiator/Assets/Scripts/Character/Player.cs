@@ -9,11 +9,22 @@ namespace Gladiatorz {
             InitializeCharacterDefaults();
             if (isLocalPlayer) {
                 GameManager.Instance.BindLocalPlayer(motor, this);
+                CmdRegisterSelfToServer();
             }
         }
 
+        [Command]
+        private void CmdRegisterSelfToServer() {
+            MatchManager.Instance.RegisterPlayer(this);
+        }
+
         public override void OnDeath() {
-            //throw new System.NotImplementedException();
+            Debug.Log("I have been killed");
+        }
+
+        [Server]
+        private void PollServerForDeath() {
+            //MatchManager.Instance
         }
 
         public void OnDestroy() {

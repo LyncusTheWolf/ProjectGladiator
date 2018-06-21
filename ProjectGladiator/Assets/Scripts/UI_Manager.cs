@@ -9,6 +9,8 @@ namespace Gladiatorz {
 
         public RectTransform healthRect;
 
+        public Text statTextBox;
+
         public static UI_Manager Instance {
             get { return instance; }
         }
@@ -20,11 +22,31 @@ namespace Gladiatorz {
             }
 
             instance = this;
-            //Init();
+            Init();
         }
 
+        public void Init() {
+            StartCoroutine(UpdateUICall());
+        }
+
+        public IEnumerator UpdateUICall() {           
+            while (true) {
+                yield return new WaitForSeconds(0.025f);
+                PollServerStatus();
+            }
+        }
+
+        //TODO: Move this functionality to an outside class
         public void SetHealthRect(float percent) {
             healthRect.localScale = new Vector3(percent, 1.0f, 1.0f);
+        }
+
+        public void PollServerStatus() {
+            ClientIntermediate.Instance.RequestMatchData();
+        }
+
+        public void UpdateStatTextBox(string matchStatisticsStrings) {
+            statTextBox.text = matchStatisticsStrings;
         }
     }
 }

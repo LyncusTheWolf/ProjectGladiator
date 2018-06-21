@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4153356621641142}
   - component: {fileID: 114000369183965986}
+  - component: {fileID: 114224616452177326}
+  - component: {fileID: 114252241882149336}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -51,8 +53,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a31a0a291087b74abc1cbcc84fd4902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultHitParticle: {fileID: 1601562069105070, guid: d423bd7e5b82c904491c1671fc5d9cf0,
-    type: 2}
   sceneCamera: {fileID: 0}
   playerCameraPrefab: {fileID: 1842425073863376, guid: 70d1f85240bef50478858d838ed1820b,
     type: 2}
+--- !u!114 &114224616452177326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863672705277838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12427a1ddc44c864399a892d7cf2d0bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114252241882149336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863672705277838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 34
+    i1: 231
+    i2: 141
+    i3: 176
+    i4: 246
+    i5: 123
+    i6: 200
+    i7: 180
+    i8: 90
+    i9: 38
+    i10: 105
+    i11: 169
+    i12: 63
+    i13: 141
+    i14: 53
+    i15: 143
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1

@@ -5,7 +5,7 @@ SceneListBegin?
 Assets/Scenes/Debug.unity
 SceneListEnd?
 42d3f1628283c56b568e7ddfc535642f com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessLayer
-1be84684a5f3dd0ac0af574f33b093c9 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.ColorGrading
+45b0abc154d219da097034d470fdb180 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.ColorGrading
 b43cb4e73e582d55726b700a4bbe3be5 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.LensDistortion
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -19,7 +19,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 607d64d2c4bc76ac9876e6f7b9cc7edf UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
-3ffd5c998941a782a66a4f2efe87e539 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Bloom
+ef52f11740c3846dce176ce3e6f32698 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Bloom
 7285365fe3efdee684e7e2ee30bebbdc com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.MotionBlur
 1b98b340dc4e0e32b2eb485587606c19 Assembly-CSharp.dll:Gladiatorz.Player
 1b98b340dc4e0e32b2eb485587606c19 Assembly-CSharp.dll:Gladiatorz.Enemy
@@ -248,7 +248,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 6d1d912dfae9334814d8051be316950f Assembly-CSharp.dll:Gladiatorz.BreakableObject
 7a85ac6da0f41c725300888bfe035ca5 Assembly-CSharp.dll:.NetworkPrefab
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-5de537d36067d2273c441f6cf78ab6f6 Assembly-CSharp.dll:Gladiatorz.UI_Manager
+1489346e8b91c0ec2ae60dd0f4ab8133 Assembly-CSharp.dll:Gladiatorz.UI_Manager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:.PluginPH
 f3a7d6b7ba2834fa390d7aee0d4a2173 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessVolume
 35e865cc5175d234df47214c8f8ec47c com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Grain
@@ -319,3 +319,4 @@ a924c90a95cf65003f662aa5e30abb6b Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 01e6f145049f3a676df6dc247eabf176 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehaviour
 3d1b89310e77c34bc0c8d7132231345c Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 05524b8f659e7bfe5756d1335fec24ba Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Gladiatorz.ClientIntermediate
