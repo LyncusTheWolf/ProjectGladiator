@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthRect: {fileID: 1134380303}
-  statTextBox: {fileID: 0}
+  statTextBox: {fileID: 684962843}
 --- !u!1 &1050343218
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,9 +55,7 @@ MonoBehaviour:
   firingMaxDistance: 250
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 0
-  defaultHitParticle: {fileID: 1601562069105070, guid: d423bd7e5b82c904491c1671fc5d9cf0,
-    type: 2}
+    m_Bits: 4
 --- !u!114 &114658062078679316
 MonoBehaviour:
   m_ObjectHideFlags: 1

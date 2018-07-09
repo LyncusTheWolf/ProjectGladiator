@@ -19,6 +19,9 @@ namespace Gladiatorz {
 
         public Dictionary<Player, MatchStatistics> playersInScene;
 
+        private float timeSinceLastPacketUpdate;
+        private bool matchIsLive;
+
         public static MatchManager Instance {
             get { return instance; }
         }
@@ -34,7 +37,31 @@ namespace Gladiatorz {
         }
 
         public void Init() {
+            Time.timeScale = 1.0f;
             playersInScene = new Dictionary<Player, MatchStatistics>();
+            timeSinceLastPacketUpdate = 0.0f;
+            matchIsLive = true;
+        }
+
+        public void Update() {
+            if(matchIsLive && timeSinceLastPacketUpdate > 0.25f) {
+                MatchStatusInternal();
+                timeSinceLastPacketUpdate -= 0.25f;
+            }
+
+            timeSinceLastPacketUpdate += Time.unscaledDeltaTime;
+        }
+
+        private void MatchStatusInternal() {
+            string matchString = "";
+
+            foreach (KeyValuePair<Player, MatchStatistics> pms in playersInScene) {
+                matchString += pms.Key.name + ": Kills-" + pms.Value.kills + " Deaths-" + pms.Value.deaths + " \n";
+            }
+
+            Debug.Log("Pushing Match Data");
+            ClientIntermediate.Instance.RpcUpdateClientMatchData(matchString);
+            Debug.Log("Waiting for next routine iteration");
         }
 
         [Server]
@@ -47,7 +74,7 @@ namespace Gladiatorz {
             playersInScene.Add(newPlayer, new MatchStatistics());
         }
 
-        [Server]
+        /*[Server]
         public string PullServerMatchData() {
             string matchString = "";
 
@@ -56,7 +83,7 @@ namespace Gladiatorz {
             }
 
             return matchString;
-        }
+        }*/
 
         [Server]
         public void PerformFiringCalculations(Character characterObj, Vector3 position, Vector3 direction, LayerMask damageMask) {

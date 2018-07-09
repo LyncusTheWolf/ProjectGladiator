@@ -22,20 +22,10 @@ namespace Gladiatorz {
             instance = this;
         }
 
-        [Client]
-        public void RequestMatchData() {
-            CmdPullServerData();
-        }
-
-        [Command]
-        private void CmdPullServerData() {
-            string  pms = MatchManager.Instance.PullServerMatchData();
-            TargetUpdateMatchData(connectionToClient, pms);
-        }
-
-        [TargetRpc]
-        public void TargetUpdateMatchData(NetworkConnection target, string newData) {
-            UI_Manager.Instance.UpdateStatTextBox(newData);
+        [ClientRpc]
+        public void RpcUpdateClientMatchData(string matchDataString) {
+            Debug.Log("Rpc Packet Recieved");
+            UI_Manager.Instance.UpdateStatTextBox(matchDataString);
         }
     }
 }

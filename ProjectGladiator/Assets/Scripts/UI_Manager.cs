@@ -26,14 +26,6 @@ namespace Gladiatorz {
         }
 
         public void Init() {
-            StartCoroutine(UpdateUICall());
-        }
-
-        public IEnumerator UpdateUICall() {           
-            while (true) {
-                yield return new WaitForSeconds(0.025f);
-                PollServerStatus();
-            }
         }
 
         //TODO: Move this functionality to an outside class
@@ -41,11 +33,8 @@ namespace Gladiatorz {
             healthRect.localScale = new Vector3(percent, 1.0f, 1.0f);
         }
 
-        public void PollServerStatus() {
-            ClientIntermediate.Instance.RequestMatchData();
-        }
-
         public void UpdateStatTextBox(string matchStatisticsStrings) {
+            Debug.Log("Update box called");
             statTextBox.text = matchStatisticsStrings;
         }
     }

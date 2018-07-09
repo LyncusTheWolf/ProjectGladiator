@@ -249,6 +249,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 7a85ac6da0f41c725300888bfe035ca5 Assembly-CSharp.dll:.NetworkPrefab
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 1489346e8b91c0ec2ae60dd0f4ab8133 Assembly-CSharp.dll:Gladiatorz.UI_Manager
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Gladiatorz.ClientIntermediate
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:.PluginPH
 f3a7d6b7ba2834fa390d7aee0d4a2173 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessVolume
 35e865cc5175d234df47214c8f8ec47c com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Grain
@@ -319,4 +320,3 @@ a924c90a95cf65003f662aa5e30abb6b Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 01e6f145049f3a676df6dc247eabf176 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehaviour
 3d1b89310e77c34bc0c8d7132231345c Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 05524b8f659e7bfe5756d1335fec24ba Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Gladiatorz.ClientIntermediate
