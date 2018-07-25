@@ -5,6 +5,12 @@ using UnityEngine;
 namespace Gladiatorz {
     public static class TraitDatabase {
 
+        public const int MAX_SKILL_POINTS = 30;
+
+        public struct SkillBlock {
+
+        }
+
         private static Dictionary<uint, Trait> traitDictionary;
 
         public static Trait GetTrait(uint id) {
@@ -49,5 +55,7 @@ namespace Gladiatorz {
 
             traitDictionary[id] = trait;
         }
+
+        
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gladiatorz {
     public class BreakableObject : DamagableObject {
-        public override void Init() {
+        protected override void InitInternal() {
             //throw new System.NotImplementedException();
         }
 

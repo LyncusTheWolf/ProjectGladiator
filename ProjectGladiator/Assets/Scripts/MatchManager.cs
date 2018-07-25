@@ -19,6 +19,8 @@ namespace Gladiatorz {
 
         public Dictionary<Player, MatchStatistics> playersInScene;
 
+        public GameObject playerPrefab;
+
         private float timeSinceLastPacketUpdate;
         private bool matchIsLive;
 
@@ -105,7 +107,7 @@ namespace Gladiatorz {
 
                     Debug.Log("Dealing " + damageValue);
 
-                    dmg.CmdAdjustHealth(-damageValue);
+                    dmg.AdjustHealth(-damageValue);
                     //Network.Instantiate(defaultHitParticle, hit.point, Quaternion.LookRotation(hit.normal), 0);
 
                     FXManager.Instance.RpcSpawnParticle(-1, hit.point, Quaternion.LookRotation(hit.normal));
@@ -113,6 +115,13 @@ namespace Gladiatorz {
             }
 
             characterObj.gameObject.layer = temp;
+        }
+
+        [Server]
+        public void RecordPlayerDeath(Player deadPlayer) {
+            MatchStatistics ms = playersInScene[deadPlayer];
+            ms.deaths += 1;
+            playersInScene[deadPlayer] = ms;
         }
 
         void OnPlayerConnected(NetworkPlayer player) {

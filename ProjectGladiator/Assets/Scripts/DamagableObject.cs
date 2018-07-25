@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Gladiatorz {
+    [RequireComponent(typeof(Collider))]
     public abstract class DamagableObject : NetworkBehaviour {
 
         public delegate void OnModifyDelegate(DamagableObject self);
@@ -18,22 +19,30 @@ namespace Gladiatorz {
         [SyncVar]
         protected uint totalDefense;
 
+        protected Collider objCollider;
+
         public int Defense {
             get { return (int)totalDefense; }
         }
 
         public void Start() {
-            currentHealth = maxHealth;                
+            objCollider = GetComponent<Collider>();
 
             Init();
+        }
+
+        public void Init() {
+            currentHealth = maxHealth;
+
+            InitInternal();
         }
 
         public float PollHealthRatio() {
             return currentHealth / (float)maxHealth;
         }
 
-        [Command]
-        public void CmdAdjustHealth(int amt) {
+        [Server]
+        public void AdjustHealth(int amt) {
             Debug.Log("Pushing Damage");
 
             currentHealth = Mathf.Clamp(currentHealth + amt, 0, maxHealth);
@@ -57,7 +66,7 @@ namespace Gladiatorz {
             onDeathEvent(this);
         }
 
-        public abstract void Init();
+        protected abstract void InitInternal();
         public abstract void OnDeath();
     }
 }

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 392}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 124
+  controlID: 29
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 392}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 125
+  controlID: 30
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_MinSize: {x: 206, y: 121}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 126
+  controlID: 31
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -393,14 +393,14 @@ MonoBehaviour:
     height: 506
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 2216.967088180466
+  lastFramingTime: 376356.0802395963
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -7.582712, y: -0.22876668, z: -4.60004}
+    m_Target: {x: 0, y: 0, z: -8}
     speed: 2
-    m_Value: {x: -7.582712, y: -0.22876668, z: -4.60004}
+    m_Value: {x: 0, y: 0, z: -8}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -428,13 +428,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.02756699, y: 0.9507693, z: -0.29567125, w: -0.088690236}
+    m_Target: {x: 0.14707108, y: 0.29087698, z: -0.04528651, w: 0.9443105}
     speed: 2
-    m_Value: {x: -0.027566858, y: 0.9507648, z: -0.29566985, w: -0.08868981}
+    m_Value: {x: 0.14707017, y: 0.29087517, z: -0.04528623, w: 0.94430465}
   m_Size:
-    m_Target: 6.617314
+    m_Target: 22
     speed: 2
-    m_Value: 6.617314
+    m_Value: 22
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -525,19 +525,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs/Characters
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 58
   m_LastFolders:
-  - Assets/Prefabs/Characters
+  - Assets
   m_LastFoldersGridSize: 58
   m_LastProjectPath: F:\Users\kenne_000\GitRepositories\ProjectGladiator\ProjectGladiator
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 34}
-    m_SelectedIDs: 74340000
-    m_LastClickedID: 13428
+    scrollPos: {x: 0, y: 86}
+    m_SelectedIDs: ec2c0000
+    m_LastClickedID: 11500
     m_ExpandedIDs: 00000000ec2c0000a62e0000ba2e00006e3100007a3100000e34000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: ba4000001828000004280000ba71ffffba240000be240000a892ffff961a06005875e9ff022800007496ffff463a00003c3c0000de270000c8280000d2ef00002a9708008ef10000643a0000663a0000703a0000062b0000ce240000f235feffaa380000d6330000fa330000b42500000000000038080000b22e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -668,13 +668,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 619
-    width: 1111
+    width: 1305
     height: 399
   m_PersistentViewDataDictionary: {fileID: 0}
   m_AnimEditor: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 13598
+  m_LastSelectedObjectID: 14340
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -701,7 +701,7 @@ MonoBehaviour:
     height: 399
   m_PersistentViewDataDictionary: {fileID: 0}
   m_VertSplit:
-    ID: 694
+    ID: 4425
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes: bf000000c0000000
@@ -1118,18 +1118,18 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 1246feffaa46feff2249feff3efbffff000000001e3500002e35000042350000
+    m_ExpandedIDs: 7efdc6ffa0c7ffff4ac8ffffc6caffff3efbffff00000000e8370000f837000016380000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Character Controller
-      m_OriginalName: Character Controller
+      m_Name: Match Manager
+      m_OriginalName: Match Manager
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -134814
+      m_UserData: 14266
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0

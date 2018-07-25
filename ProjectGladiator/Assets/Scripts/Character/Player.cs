@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 namespace Gladiatorz {
     public class Player : Character {
-        public override void Init() {
+        protected override void InitInternal() {
             InitializeCharacterDefaults();
             if (isLocalPlayer) {
                 GameManager.Instance.BindLocalPlayer(motor, this);
