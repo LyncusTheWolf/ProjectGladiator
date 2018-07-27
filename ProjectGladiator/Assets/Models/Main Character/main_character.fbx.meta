@@ -9,7 +9,12 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: WIP_characterlowpoly1:character1
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WIP_characterlowpoly1_character_mat
+    second: {fileID: 2100000, guid: 0cdf6c571e8796744a481b9ed1ed2a1d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
