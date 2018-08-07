@@ -123,9 +123,5 @@ namespace Gladiatorz {
             ms.deaths += 1;
             playersInScene[deadPlayer] = ms;
         }
-
-        void OnPlayerConnected(NetworkPlayer player) {
-            Debug.Log("Player " + " connected from " + player.ipAddress + ":" + player.port);
-        }
     }   
 }

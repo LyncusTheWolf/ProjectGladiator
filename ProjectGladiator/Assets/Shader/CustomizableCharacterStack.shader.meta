@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e4bf5a8819d776a4f857d1a6f4fc2d85
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTex: {instanceID: 0}
+  - _SecondaryTex: {fileID: 2800000, guid: 163a2906b6c15eb40a3d7773615441dc, type: 3}
+  - _TertiaryTex: {fileID: 2800000, guid: 163a2906b6c15eb40a3d7773615441dc, type: 3}
+  - _QuaternaryTex: {fileID: 2800000, guid: 163a2906b6c15eb40a3d7773615441dc, type: 3}
+  - _AmbientMap: {instanceID: 0}
+  - _BumpMap: {instanceID: 0}
+  - _RoughnessMap: {instanceID: 0}
+  - _MetallicTex: {instanceID: 0}
+  - _EmisionMap: {instanceID: 0}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,7 +14,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: WIP_characterlowpoly1_character_mat
-    second: {fileID: 2100000, guid: 0cdf6c571e8796744a481b9ed1ed2a1d, type: 2}
+    second: {fileID: 2100000, guid: a1736d12e7c39f84789abdf0c922ba3a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
